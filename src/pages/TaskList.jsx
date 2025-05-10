@@ -92,16 +92,30 @@ const TaskList = () => {
       {error && <Alert variant="danger">{error}</Alert>}
 
       <Row className="mb-3">
-        <Col>
-          <Button onClick={handleExport} className="me-2" variant="success">Export Tasks to Excel</Button>
-          <Form.Control
-            type="file"
-            accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-            onChange={handleImport}
-            className="d-inline w-auto"
-          />
-        </Col>
-      </Row>
+  <Col>
+    <div className="d-flex align-items-center gap-3 flex-wrap">
+      <Button onClick={handleExport} variant="success">
+        Export Tasks to Excel
+      </Button>
+
+      <div>
+        
+        <input
+          type="file"
+          accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          onChange={handleImport}
+          id="uploadInput"
+          style={{ display: 'none' }}
+        />
+        <Button variant="primary" onClick={() => document.getElementById('uploadInput').click()}>
+          Upload Tasks (csv/excel)
+        </Button>
+      </div>
+    </div>
+  </Col>
+</Row>
+
+
 
       {loading ? (
         <div className="text-center"><Spinner animation="border" /></div>
